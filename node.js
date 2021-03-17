@@ -3,7 +3,7 @@
 /**
  * Init Alpha Vantage with your API key.
  *
- * @param {JRIFSK7RVUAFMRM8} key 
+ * @param {String} key 
  *   Your Alpha Vantage API key.
  */
-const alpha = require('alphavantage')({ key: 'qweqweqwe' });
+const alpha = require('alphavantage')({ key: 'JRIFSK7RVUAFMRM8' });
