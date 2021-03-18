@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>css demo</title>
+  <style>
+  p {
+    color: blue;
+    
+    font-size: 14px;
+  }
+
+  img.test {
+    
+    width: 20%;
+    
+  }
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+ 
+  <p><img class="test" src="ls.png"></p>
+ 
+  <p>Or me to see a color change.</p>
+ 
+<script>
+
+
+  $( "img.test" ).css( "width", "50" + "%" );
+
+
+</script>
+ 
+</body>
+</html>
+
+$( ".test" ).on( "mouseover", function() {
+});
