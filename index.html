@@ -120,7 +120,7 @@ border-image-slice:  1% 30% 1% 10% fill;
  }
 
 div.a{
-  line-height: 0.7;
+  line-height: 1;
 }
 
 </style>
@@ -130,8 +130,8 @@ div.a{
 </head>
 <body>
 <center>
-<div id='div_iframe'><iframe id='frame' src='https://www.tradegate.de/orderbuch.php?isin=DE0006459324' ></iframe></div>
 
+<br>
 <div class="a"><p>Wie lang und schwarz ist</p>
 <p ><font size="7"><b>Lang & Schwarz</b></font></p></div>
 
@@ -160,14 +160,31 @@ div.a{
 
  <script>
 
-var kurs = 137.25;
+var kurs = 135; function fetchKurs() { 
+
+  $.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.bid); 
+
+  var kurs = kurs + 0.5;
+
+  var laenge1 = ((1904/300*kurs)+52)/2010*100; 
+
+  var laenge2 = (kurs-123)/33*100;
+
+$( "table.bbc" ).css( "width", laenge1 + "%" );
+$( "table.nuss" ).css( "width", laenge2 + "%" );
+}); }
+
+fetchKurs(); setInterval(fetchKurs, 30000)
+
+
+/*var kurs = 137.25;
 
 var laenge1 = ((1904/300*kurs)+52)/2010*100;
 var laenge2 = (kurs-123)/33*100;
 
   $( "table.bbc" ).css( "width", laenge1 + "%" );
   $( "table.nuss" ).css( "width", laenge2 + "%" );
-
+*/
 
 </script>
 
