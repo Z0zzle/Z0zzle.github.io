@@ -162,10 +162,10 @@ div.a{
 
 var kurs = 135; function fetchKurs() { 
 
-  $.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.bid); 
+  $.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.Last); 
 
-  var kurs = kurs + 0.5;
-
+  /*var kurs = kurs + 0.5;
+  */
   var laenge1 = ((1904/300*kurs)+52)/2010*100; 
 
   var laenge2 = (kurs-123)/33*100;
