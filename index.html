@@ -160,7 +160,7 @@ div.a{
 
  <script>
 
-var kurs = 135; function fetchKurs() { 
+/*var kurs = 135; function fetchKurs() { 
 
   $.post('https://www.tradegate.de/orderbuch.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.Last); 
 
@@ -175,7 +175,15 @@ $( "table.nuss" ).css( "width", laenge2 + "%" );
 }); }
 
 fetchKurs(); setInterval(fetchKurs, 30000)
+*/
 
+var kurs = 135; function fetchKurs() { $.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.last); var laenge1 = ((1904/300*kurs)+52)/2010*100; var laenge2 = (kurs-123)/33*100;
+
+$( "table.bbc" ).css( "width", laenge1 + "%" );
+$( "table.nuss" ).css( "width", laenge2 + "%" );
+}); }
+
+fetchKurs(); setInterval(fetchKurs, 30000)
 
 /*var kurs = 137.25;
 
