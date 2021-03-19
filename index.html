@@ -84,7 +84,7 @@ input:checked + .slider:before {
 
 #bbcvoll {
   border: 100px solid transparent;
-  height: 10vh;	
+  height: 10vh; 
   border-image: url(bbc.png);
   border-image-slice:  35% 15% 35% 35% fill;
   border-image-repeat: stretch;
@@ -123,6 +123,7 @@ div.a{
   line-height: 1;
 }
 
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -154,45 +155,110 @@ div.a{
 <div id ="Eichelzoom">
 
 <table class="nuss"><tr><td><p id="bbcnuss"> </p> </td></tr></table>
-<img src="linealzoom.png" width="100%">
+<img src="linealzoom103.png" id="messlatte" width="100%">
 
 </div>
 
  <script>
 
-/*var kurs = 135; function fetchKurs() { 
 
-  $.post('https://www.tradegate.de/orderbuch.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.Last); 
+var kurs = 150; function fetchKurs() { 
 
+  $.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.last); 
   
-  
-  var laenge1 = ((1904/300*kurs)+52)/2010*100; 
+    var laenge1 = ((1904/300*kurs)+52)/2010*100; 
 
-  var laenge2 = (kurs-123)/33*100;
+
+    if (kurs < 132) {
+
+    $("#messlatte").attr("src", "linealzoom103.png");
+
+    var linmin = 103;
+
+  } else if (kurs >= 132 && kurs < 152) {
+    
+    $("#messlatte").attr("src", "linealzoom123.png");
+
+    var linmin = 123;
+
+  } else if (kurs >= 152 && kurs < 172) {
+    
+    $("#messlatte").attr("src", "linealzoom143.png");
+
+    var linmin = 143;
+
+  } else if (kurs >= 172 && kurs < 192) {
+    
+    $("#messlatte").attr("src", "linealzoom163.png");
+
+    var linmin = 163;
+
+  } else if (kurs >= 192 && kurs < 212) {
+    
+    $("#messlatte").attr("src", "linealzoom183.png");
+
+    var linmin = 183;
+
+  } else if (kurs >= 212 && kurs < 232) {
+    
+    $("#messlatte").attr("src", "linealzoom203.png");
+
+    var linmin = 203;  
+
+  } else if (kurs >= 232 && kurs < 252) {
+    
+    $("#messlatte").attr("src", "linealzoom223.png");
+
+    var linmin = 223;
+
+  } else if (kurs >= 252 && kurs < 272) {
+    
+    $("#messlatte").attr("src", "linealzoom243.png");
+
+    var linmin = 243;
+
+  } else if (kurs >= 272 && kurs < 292) {
+    
+    $("#messlatte").attr("src", "linealzoom263.png");
+
+    var linmin = 263;
+
+  } else if (kurs >= 292) {
+    
+    $("#messlatte").attr("src", "linealzoom283.png");
+
+    var linmin = 283;
+
+  } else {
+  
+}
+
+    var laenge2 = (kurs-linmin)/33*100;
 
 $( "table.bbc" ).css( "width", laenge1 + "%" );
 $( "table.nuss" ).css( "width", laenge2 + "%" );
-}); }
+}); } 
 
-fetchKurs(); setInterval(fetchKurs, 30000)
-*/
+fetchKurs(); setInterval(fetchKurs, 30000) 
 
-var kurs = 135; function fetchKurs() { $.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { kurs = parseFloat(result.last); var laenge1 = ((1904/300*kurs)+52)/2010*100; var laenge2 = (kurs-123)/33*100;
 
-$( "table.bbc" ).css( "width", laenge1 + "%" );
-$( "table.nuss" ).css( "width", laenge2 + "%" );
-}); }
+var Kitzler = document.getElementById('Kitzler');
+var PrallesDing = document.getElementById('PrallesDing');
+var Eichelzoom = document.getElementById('Eichelzoom');
 
-fetchKurs(); setInterval(fetchKurs, 30000)
+Eichelzoom.style.display = 'none';
 
-/*var kurs = 137.25;
+Kitzler.onchange = function () {
+  if (Kitzler.checked) {
+    Eichelzoom.style.display = 'block';
+    PrallesDing.style.display = 'none';
+  } else {
+    PrallesDing.style.display = 'block';
+    Eichelzoom.style.display = 'none';
 
-var laenge1 = ((1904/300*kurs)+52)/2010*100;
-var laenge2 = (kurs-123)/33*100;
+  }
+};
 
-  $( "table.bbc" ).css( "width", laenge1 + "%" );
-  $( "table.nuss" ).css( "width", laenge2 + "%" );
-*/
 
 </script>
 
