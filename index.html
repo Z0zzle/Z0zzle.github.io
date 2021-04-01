@@ -94,16 +94,21 @@ input:checked + .slider:before {
 
 #bbcnuss {
   border: 20px solid;
-  border-image: url("bbcnuss.png");
-border-image-slice:  1% 30% 1% 10% fill;
-  border-image-width: 5px 300px 5px 10px;
   padding: 40px;
-  height: 150px
+  height: 150px;
+  border-image: url("bbcnuss.png");
+  border-image-slice:  1% 30% 1% 10% fill;
+  border-image-width: 5px 300px 5px 10px;
+
   
 }
 
 div.a{
   line-height: 1;
+}
+
+form {
+  display: inline-block;
 }
 
 </style>
@@ -119,13 +124,23 @@ div.a{
 <p ><font size="7"><b>Lang & Schwarz</b></font></p></div>
 
 
+
+
 <form>Eichelzoom   
 <label class="switch">
 <input type="checkbox" id="Kitzler">
 <div class="slider round"></div>
 </label>
 </form>
+
+<form>     SFW-Modus   
+<label class="switch">
+<input type="checkbox" id="Zensur">
+<div class="slider round"></div>
+</label>
+</form>
 </center>
+
 
 
 <div id ="PrallesDing">
@@ -247,6 +262,37 @@ Kitzler.onchange = function () {
   }
 };
 
+var Zensur = document.getElementById('Zensur');
+var Zensur = document.getElementById('Zensur');
+
+Zensur.onchange = function () {
+
+  if (Zensur.checked) {
+
+    $("#bbcvoll").css("border-image", "url(bbczensiert.png)");
+    $("#bbcvoll").css("border-image-slice", "35% 15% 35% 35% fill");
+    $("#bbcvoll").css("border-image-repeat", "stretch");
+
+    $("#bbcnuss").css("border-image", "url(bbcnusszensiert.png)");
+    $("#bbcnuss").css("border-image-slice", "1% 30% 1% 10% fill");
+    $("#bbcnuss").css("border-image-width", "5px 300px 5px 10px");
+
+    $("link").attr("href", "undercover.png");
+
+  } else {
+
+    $("#bbcvoll").css("border-image", "url(bbc.png)");
+    $("#bbcvoll").css("border-image-slice", "35% 15% 35% 35% fill");
+    $("#bbcvoll").css("border-image-repeat", "stretch");
+
+    $("#bbcnuss").css("border-image", "url(bbcnuss.png)");
+    $("#bbcnuss").css("border-image-slice", "1% 30% 1% 10% fill");
+    $("#bbcnuss").css("border-image-width", "5px 300px 5px 10px");
+
+    $("link").attr("href", "doedel.png");
+
+  }
+};
 
 </script>
 
