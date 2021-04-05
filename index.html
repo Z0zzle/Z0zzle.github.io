@@ -219,13 +219,13 @@ div.b {
 
   <div style="flex: 1">
 
-    <h3>Octavia RS Exchange Kurs:</h3>
+    <h3><div class="Autowagenname1">Octavia RS Exchange Rate:</div></h3>
 
-    <img src="Octavia-RS.png" width="300px">
+    <img class="octavia" src="Octavia-RS.png" width="300px">
 
     <table>
 
-      <tr><td><div class="RSExchange"></div></td> <td>Lange Schwarze = 1 Octavia RS</td></tr>
+      <tr><td><div class="RSExchange"></div></td> <td><div class="Autowagenname2"> Lange Schwarze = 1 Octavia RS</div></td></tr>
 
     </table>
 
@@ -418,6 +418,10 @@ Zensur.onchange = function () {
 
     $("link").attr("href", "undercover.png");
 
+    $("img.octavia").attr("src", "SFW-Octavia.png");
+    $("div.Autowagenname1").text( "Fiat Ducato Exchange Rate:");
+    $("div.Autowagenname2").text( " Lange Schwarze = 1 Fiat Ducato");
+
   } else {
 
     $("#bbcvoll").css("border-image", "url(bbc.png)");
@@ -429,6 +433,11 @@ Zensur.onchange = function () {
     $("#bbcnuss").css("border-image-width", "5px 300px 5px 10px");
 
     $("link").attr("href", "doedel.png");
+
+    $("img.octavia").attr("src", "Octavia-RS.png");
+
+    $("div.Autowagenname1").text( "Octavia RS Exchange Rate:");
+    $("div.Autowagenname2").text( " Lange Schwarze = 1 Octavia RS");
 
   }
 };
