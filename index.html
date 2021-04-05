@@ -109,8 +109,27 @@ div.a{
   line-height: 1;
 }
 
+
 form {
   display: inline-block;
+}
+
+td {
+
+  text-align: right;
+
+}
+
+div.b {
+
+  display: flex;
+
+}
+
+@media screen and (max-width: 800px) {
+   div.b { 
+    display: block;   
+  }
 }
 
 </style>
@@ -123,10 +142,12 @@ form {
 
 <br>
 <div class="a"><p>Wie lang und schwarz ist</p>
-<p ><font size="7"><b>Lang & Schwarz</b></font></p></div>
+<p><font size="7"><b>Lang & Schwarz</b></font></p></div>
 
 
+<font face="Helvetica">
 
+<font size="2">
 
 <form>Eichelzoom   
 <label class="switch">
@@ -141,6 +162,16 @@ form {
 <div class="slider round"></div>
 </label>
 </form>
+
+<form>     Harte Fakten   
+<label class="switch">
+<input type="checkbox" id="FaktenKitzler">
+<div class="slider round"></div>
+</label>
+</form>
+
+</font>
+
 </center>
 
 
@@ -151,6 +182,7 @@ form {
 <img src="lineal.png" width="100%">
 
 </div>
+
 <div id ="Eichelzoom">
 
 <table class="nuss"><tr><td><p id="bbcnuss"> </p> </td></tr></table>
@@ -158,7 +190,80 @@ form {
 
 </div>
 
- <script>
+<div id ="Fakten">
+
+<center>
+
+<br>
+<br>
+<br>
+
+<div class="b">
+  
+  <div style="flex: 1">
+
+    <h3>Tradegate Quotes:</h3>
+
+    <br>
+
+    <table>
+
+      <tr><td style="text-align: left">Kurs:</td> <td> <div class="InfoKurs"></div></td></tr>
+      <tr><td style="text-align: left">Bid:</td> <td> <div class="InfoBid"></div></td></tr>
+      <tr><td style="text-align: left">Ask:</td> <td> <div class="InfoAsk"></div></td></tr>
+      <tr><td style="text-align: left">Spreiz:</td> <td> <div class="InfoSpreiz"></div></td></tr>
+
+    </table>
+
+  </div>
+
+  <div style="flex: 1">
+
+    <h3>Octavia RS Exchange Kurs:</h3>
+
+    <img src="Octavia-RS.png" width="300px">
+
+    <table>
+
+      <tr><td><div class="RSExchange"></div></td> <td>Lange Schwarze = 1 Octavia RS</td></tr>
+
+    </table>
+
+  </div>
+
+  <div style="flex: 1" style="width: 100">
+
+    <h3>MSW Top 5:</h3>
+
+    <br>
+
+    <table>
+
+      <tr><td>1.</td> <td>1939 Anteile</td></tr>
+      <tr><td>2.</td> <td>1452 Anteile</td></tr>
+      <tr><td>3.</td> <td>1095 Anteile</td></tr>
+      <tr><td>4.</td> <td>550 Anteile</td></tr>
+      <tr><td>5.</td> <td>500 Anteile</td></tr>
+
+    </table>
+
+  </div>
+
+</div>
+
+</font>
+
+<br>
+<br>
+
+<img src="lusfacts.png" width="100%">
+
+</center>
+
+</div>
+
+
+<script>
 
 
 var kurs = 150; function fetchKurs() { 
@@ -241,17 +346,51 @@ $( "table.nuss" ).css( "width", laenge2 + "%" );
 
 document.title = TGLast + " EUR // L&S";  
 
+$("div.InfoKurs").text(TGLast + " EUR");
 
-}); } 
+var RSExchange = parseFloat(50980 / kurs).toFixed(2); 
 
-fetchKurs(); setInterval(fetchKurs, 30000) 
+$("div.RSExchange").text(RSExchange);
+
+
+}); 
+
+$.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { TGBid = result.bid; 
+
+
+
+$("div.InfoBid").text(TGBid + " EUR");
+
+}); 
+
+$.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { TGAsk = result.ask; 
+
+$("div.InfoAsk").text(TGAsk + " EUR");
+
+var AmiBid = parseFloat(TGBid.replace(/,/, '.'));
+var AmiAsk = parseFloat(TGAsk.replace(/,/, '.'));
+
+
+var TGSpreiz = parseFloat((AmiAsk - AmiBid) / AmiAsk * 100).toFixed(4);
+
+$("div.InfoSpreiz").text( TGSpreiz + " %");
+
+}); 
+
+} 
+
+fetchKurs(); setInterval(fetchKurs, 10000) 
 
 
 var Kitzler = document.getElementById('Kitzler');
 var PrallesDing = document.getElementById('PrallesDing');
 var Eichelzoom = document.getElementById('Eichelzoom');
+var Zensur = document.getElementById('Zensur');
+var FaktenKitzler = document.getElementById('FaktenKitzler');
+var Fakten = document.getElementById('Fakten');
 
 Eichelzoom.style.display = 'none';
+Fakten.style.display = 'none';
 
 Kitzler.onchange = function () {
   if (Kitzler.checked) {
@@ -264,7 +403,6 @@ Kitzler.onchange = function () {
   }
 };
 
-var Zensur = document.getElementById('Zensur');
 
 Zensur.onchange = function () {
 
@@ -291,6 +429,23 @@ Zensur.onchange = function () {
     $("#bbcnuss").css("border-image-width", "5px 300px 5px 10px");
 
     $("link").attr("href", "doedel.png");
+
+  }
+};
+
+FaktenKitzler.onchange = function () {
+
+  if (FaktenKitzler.checked) {
+
+    Eichelzoom.style.display = 'none';
+    PrallesDing.style.display = 'none';
+    Fakten.style.display = 'block';
+
+  } else {
+
+    PrallesDing.style.display = 'block';
+    Eichelzoom.style.display = 'none';
+    Fakten.style.display = 'none';
 
   }
 };
