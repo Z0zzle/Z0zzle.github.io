@@ -100,6 +100,33 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+
+.btn {
+  border: none;
+  background-color: #eee;
+  padding: 10px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 17px
+}
+
+.btn:hover {background: #cccccc;}
+
+.btn2 {
+  border: none;
+  background-color: #009c41;
+  padding: 10px 18px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 17px
+}
+
+.btn2:hover {background: #006b2d;}
+
+
 #bbcvoll {
   border: 100px solid transparent;
   height: 10vh; 
@@ -262,20 +289,12 @@ div.b {
 
   <div style="flex: 1" style="width: 100">
 
-    <h3>MSW Top 10:</h3>
+    <h3>2021 Ernte pro Aktie Prognose:</h3>
 
     <br>
+    <br>
 
-    <table>
-
-      <tr><td>1.</td> <td>4505 </td><td> /// 6.</td> <td>1452</td></tr>
-      <tr><td>2.</td> <td>2570 </td><td> /// 7.</td> <td>1200</td></tr>
-      <tr><td>3.</td> <td>2100 </td><td> /// 8.</td> <td>1095</td></tr>
-      <tr><td>4.</td> <td>2000 </td><td> /// 9.</td> <td>1000</td></tr>
-      <tr><td>5.</td> <td>1860 </td><td> //  10.</td> <td>700</td></tr>
-      
-
-    </table>
+    <button class="btn2" id="Ernteknopf">26,80 EUR</button>
 
   </div>
 
@@ -285,13 +304,34 @@ div.b {
 
 <br>
 <br>
-
-
-
-<img src="lus.png" class="lus" width="100%">
 <br>
 <br>
-<img src="msw_track.PNG" class="lus" width="75%">
+
+<button class="btn" id="WochenbumsKnopf">Wochenupdate</button>
+<button class="btn" id="AutistenKnopf">MSW-Tracking</button>
+<button class="btn" id="QuartalsKnopf">Quartalsvergleich</button>
+
+
+<br>
+<br>
+
+<div id ="Wochenbums">
+
+<img src="lus.png" class="lus" width="80%">
+
+</div>
+
+<div id ="Autistentracking">
+
+<img src="msw_track.PNG" class="lus" width="60%">
+
+</div>
+
+<div id ="Quartalsschwanzvergleich">
+
+<img src="quartal.png" class="lus" width="60%">
+
+</div>
 
 <br>
 <br>
@@ -304,6 +344,14 @@ div.b {
 
 
 </div>
+
+
+<audio id="audio1" src="audio1.mp3"></audio>
+<audio id="audio2" src="audio2.mp3"></audio>
+<audio id="audio3" src="audio3.mp3"></audio>
+<audio id="audio4" src="audio4.mp3"></audio>
+<audio id="audio5" src="audio5.mp3"></audio>
+<audio id="audio6" src="audio6.mp3"></audio>
 
 <script>
 
@@ -500,6 +548,86 @@ FaktenKitzler.onchange = function () {
 
   }
 };
+
+Wochenbums.style.display = 'block';
+Autistentracking.style.display = 'none';
+Quartalsschwanzvergleich.style.display = 'none';
+
+
+WochenbumsKnopf.onclick = function () {
+
+
+    Wochenbums.style.display = 'block';
+    Autistentracking.style.display = 'none';
+    Quartalsschwanzvergleich.style.display = 'none';
+
+};
+
+AutistenKnopf.onclick = function () {
+
+
+    Wochenbums.style.display = 'none';
+    Autistentracking.style.display = 'block';
+    Quartalsschwanzvergleich.style.display = 'none';
+
+};
+
+QuartalsKnopf.onclick = function () {
+
+
+    Wochenbums.style.display = 'none';
+    Autistentracking.style.display = 'none';
+    Quartalsschwanzvergleich.style.display = 'block';
+
+};
+
+ let clickState = 0;
+
+Ernteknopf.onclick = function () {
+
+  if (Zensur.checked) { 
+
+    var audio6 = document.getElementById("audio6");
+    audio6.play();
+
+  } else {
+
+    clickState++;
+
+    if (clickState == 1) {
+
+      var audio1 = document.getElementById("audio1");
+      audio1.play();
+
+    } else if (clickState == 2) {
+
+      var audio2 = document.getElementById("audio2");
+      audio2.play();
+
+    } else if (clickState == 3) {
+
+    var audio3 = document.getElementById("audio3");
+    audio3.play();
+
+    } else if (clickState == 4) {
+
+    var audio4 = document.getElementById("audio4");
+    audio4.play();
+
+    } else if (clickState == 5) {
+
+    var audio5 = document.getElementById("audio5");
+    audio5.play();
+
+    clickState = 0;
+
+    }
+
+
+  }
+
+}
+
 
 </script>
 
