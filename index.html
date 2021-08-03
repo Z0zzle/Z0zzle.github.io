@@ -124,6 +124,12 @@ input:checked + .slider:before {
   border-radius: 17px
 }
 
+.btnhidden {
+  border: none;
+  background-color: #FFFFFF;
+  display: inline-block;
+}
+
 .btn2:hover {background: #006b2d;}
 
 
@@ -277,7 +283,7 @@ div.b {
 
     <h3><div class="Autowagenname1">Octavia RS Exchange Rate:</div></h3>
 
-    <img class="octavia" src="Octavia-RS.png" width="300px">
+    <button class="btnhidden" id="sterni"><img class="octavia" src="Octavia-RS.png" width="300px"></button>
 
     <table>
 
@@ -580,6 +586,20 @@ QuartalsKnopf.onclick = function () {
     Quartalsschwanzvergleich.style.display = 'block';
 
 };
+
+sterni.onclick = function () {
+
+  if (Zensur.checked) { 
+
+    $("img.octavia").attr("src", "SFW-Sterni-Octavia.png");
+
+  } else {
+
+  }
+
+
+}
+
 
  let clickState = 0;
 
