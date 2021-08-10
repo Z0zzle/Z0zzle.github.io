@@ -184,14 +184,19 @@ div.b {
     display: block;   
   }
 
-}
+
 
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
+
+<div id ="Schwanzi">
 
 <font color="black" style="text-shadow: 0 0 0px rgba(0, 0, 0, 1)">
 
@@ -359,14 +364,190 @@ div.b {
 <audio id="audio5" src="audio5.mp3"></audio>
 <audio id="audio6" src="audio6.mp3"></audio>
 
+</div>
+
+
+<div id="Stahl">
+ 
+<span class="blink_me"><font size="7"> 
+<div class="Stahlkurs" style="position: absolute; top: 40%; left: 20%;">
+
+
+
+</div></font></span>
+
+<button class="btnhidden" id="AudioAus" style="position: absolute; left: 20px; bottom: 20px; font-size: x-large;">🔇</button>
+
+<img src="daddy.png" class="daddy" style="position: absolute; right: -400px; bottom: 0px; height: 80%">
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<audio id="audio7" src="audio7.mp3" loop="loop"></audio>
+<audio id="audio8" src="audio8.mp3"></audio>
+
+</div>
+
+<center>
+
+<form><font size="3">⚒</font>
+<label class="switch" >
+<input type="checkbox" id="Stahlbande">
+<div class="slider round"></div>
+</label>
+</form>
+
+</center>
+
+
+
 <script>
 
 
+
+
+Stahl.style.display = 'none';
+
+Stahlbande.onchange = function () {
+
+  fetchKurs();
+
+  if (Stahlbande.checked) {
+
+    Schwanzi.style.display = 'none';
+    Stahl.style.display = 'block';
+
+    $(".daddy").animate({"right":"10%"},3000);
+
+    var audio7 = document.getElementById("audio7");
+    audio7.play();
+
+
+    AudioAus.onclick = function () {
+
+    var audio7 = document.getElementById("audio7");
+    audio7.pause();
+
+    };
+
+    $("link").attr("href", "alleswirdausstahlgemacht.png");
+
+
+    let pickState = 0;
+
+    $( document ).click(function() {
+
+      pickState++;
+
+    if (pickState == 1) {
+
+      $( "div.Stahlkurs" ).effect( "shake" );
+      
+    } else if (pickState == 2) {
+
+      $( ".daddy" ).effect( "shake" );
+
+    } else if (pickState == 3) {
+
+      $( "div.Stahlkurs" ).effect( "shake" );
+
+    } else if (pickState == 4) {
+
+      $( ".daddy" ).effect( "shake" );
+
+    } else if (pickState == 5) {
+
+      $( "div.Stahlkurs" ).effect( "shake" );
+
+    } else if (pickState == 6) {
+
+      var audio8 = document.getElementById("audio8");
+      audio8.play();
+
+      pickState = 0;
+
+    };
+
+    });
+
+
+  } else {
+    Schwanzi.style.display = 'block';
+    Stahl.style.display = 'none';
+
+    var audio7 = document.getElementById("audio7");
+    audio7.pause();
+
+        $("link").attr("href", "doedel.png");
+
+
+
+  }
+
+
+};
+
+let KursURL = 'https://www.tradegate.de/refresh.php?isin=LU1598757687';
+
 var kurs = 150; function fetchKurs() { 
 
-  $.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { TGLast = result.last; 
+  var Stahlbande= document.getElementById('Stahlbande');
+
+    if (Stahlbande.checked) {
+
+    var KursURL = 'https://www.tradegate.de/refresh.php?isin=LU1598757687';
+
+    } else {
+
+    var KursURL = 'https://www.tradegate.de/refresh.php?isin=DE0006459324';
+
+    };
+
+  $.post( KursURL, function(result) { TGLast = result.last; 
+
+    if (isNaN(TGLast)){
 
     var kurs = parseFloat(TGLast.replace(/,/, '.')); 
+
+    } else {    
+
+    var kurs = TGLast;
+
+    };
+
   
     var laenge1 = ((1904/300*kurs)+52)/2010*100; 
 
@@ -377,61 +558,61 @@ var kurs = 150; function fetchKurs() {
 
     var linmin = 103;
 
-  } else if (kurs >= 132 && kurs < 152) {
+    } else if (kurs >= 132 && kurs < 152) {
     
     $("#messlatte").attr("src", "linealzoom123.png");
 
     var linmin = 123;
 
-  } else if (kurs >= 152 && kurs < 172) {
+    } else if (kurs >= 152 && kurs < 172) {
     
     $("#messlatte").attr("src", "linealzoom143.png");
 
     var linmin = 143;
 
-  } else if (kurs >= 172 && kurs < 192) {
+    } else if (kurs >= 172 && kurs < 192) {
     
     $("#messlatte").attr("src", "linealzoom163.png");
 
     var linmin = 163;
 
-  } else if (kurs >= 192 && kurs < 212) {
+    } else if (kurs >= 192 && kurs < 212) {
     
     $("#messlatte").attr("src", "linealzoom183.png");
 
     var linmin = 183;
 
-  } else if (kurs >= 212 && kurs < 232) {
+    } else if (kurs >= 212 && kurs < 232) {
     
     $("#messlatte").attr("src", "linealzoom203.png");
 
     var linmin = 203;  
 
-  } else if (kurs >= 232 && kurs < 252) {
+    } else if (kurs >= 232 && kurs < 252) {
     
     $("#messlatte").attr("src", "linealzoom223.png");
 
     var linmin = 223;
 
-  } else if (kurs >= 252 && kurs < 272) {
+    } else if (kurs >= 252 && kurs < 272) {
     
     $("#messlatte").attr("src", "linealzoom243.png");
 
     var linmin = 243;
 
-  } else if (kurs >= 272 && kurs < 292) {
+    } else if (kurs >= 272 && kurs < 292) {
     
     $("#messlatte").attr("src", "linealzoom263.png");
 
     var linmin = 263;
 
-  } else if (kurs >= 292) {
+    } else if (kurs >= 292) {
     
     $("#messlatte").attr("src", "linealzoom283.png");
 
     var linmin = 283;
 
-  } else {
+    } else {
   
 }
 
@@ -440,9 +621,24 @@ var kurs = 150; function fetchKurs() {
 $( "table.bbc" ).css( "width", laenge1 + "%" );
 $( "table.nuss" ).css( "width", laenge2 + "%" );
 
-document.title = TGLast + " EUR // L&S";  
+
+
+
+if (Stahlbande.checked) {
+
+document.title = TGLast + " EUR // MT"; 
+
+}else{
+
+document.title = TGLast + " EUR // L&S"; 
+
+};
+
+
+
 
 $("div.InfoKurs").text(TGLast + " EUR");
+$("div.Stahlkurs").text(TGLast + " EUR");
 
 var RSExchange = parseFloat(50980 / kurs).toFixed(2); 
 
@@ -451,7 +647,7 @@ $("div.RSExchange").text(RSExchange);
 
 }); 
 
-$.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { TGBid = result.bid; 
+$.post(KursURL, function(result) { TGBid = result.bid; 
 
 
 
@@ -459,12 +655,22 @@ $("div.InfoBid").text(TGBid + " EUR");
 
 }); 
 
-$.post('https://www.tradegate.de/refresh.php?isin=DE0006459324', function(result) { TGAsk = result.ask; 
+$.post(KursURL, function(result) { TGAsk = result.ask; 
 
 $("div.InfoAsk").text(TGAsk + " EUR");
 
-var AmiBid = parseFloat(TGBid.replace(/,/, '.'));
-var AmiAsk = parseFloat(TGAsk.replace(/,/, '.'));
+    if (isNaN(TGBid)){
+
+    var AmiBid = parseFloat(TGBid.replace(/,/, '.'));
+    var AmiAsk = parseFloat(TGAsk.replace(/,/, '.'));
+
+    } else {    
+
+    var AmiBid = TGBid;
+    var AmiAsk = TGAsk;
+
+    };
+
 
 
 var TGSpreiz = parseFloat((AmiAsk - AmiBid) / AmiAsk * 100).toFixed(4);
@@ -473,9 +679,11 @@ $("div.InfoSpreiz").text( TGSpreiz + " %");
 
 }); 
 
-} 
+};
+
 
 fetchKurs(); setInterval(fetchKurs, 10000) 
+
 
 
 var Kitzler = document.getElementById('Kitzler');
@@ -598,7 +806,8 @@ sterni.onclick = function () {
   }
 
 
-}
+};
+   
 
 
  let clickState = 0;
