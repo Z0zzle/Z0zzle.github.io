@@ -549,74 +549,74 @@ var kurs = 150; function fetchKurs() {
     };
 
   
-    var laenge1 = ((1904/300*kurs)+52)/2010*100; 
+    var laenge1 = 10 * ((1904/300*kurs)+52)/2010*100; 
 
 
-    if (kurs < 132) {
+    if (kurs < 13.2) {
 
     $("#messlatte").attr("src", "linealzoom103.png");
 
-    var linmin = 103;
+    var linmin = 10.3;
 
-    } else if (kurs >= 132 && kurs < 152) {
+    } else if (kurs >= 13.2 && kurs < 15.2) {
     
     $("#messlatte").attr("src", "linealzoom123.png");
 
-    var linmin = 123;
+    var linmin = 12.3;
 
-    } else if (kurs >= 152 && kurs < 172) {
+    } else if (kurs >= 15.2 && kurs < 17.2) {
     
     $("#messlatte").attr("src", "linealzoom143.png");
 
-    var linmin = 143;
+    var linmin = 14.3;
 
-    } else if (kurs >= 172 && kurs < 192) {
+    } else if (kurs >= 17.2 && kurs < 19.2) {
     
     $("#messlatte").attr("src", "linealzoom163.png");
 
-    var linmin = 163;
+    var linmin = 16.3;
 
-    } else if (kurs >= 192 && kurs < 212) {
+    } else if (kurs >= 19.2 && kurs < 21.2) {
     
     $("#messlatte").attr("src", "linealzoom183.png");
 
-    var linmin = 183;
+    var linmin = 18.3;
 
-    } else if (kurs >= 212 && kurs < 232) {
+    } else if (kurs >= 21.2 && kurs < 23.2) {
     
     $("#messlatte").attr("src", "linealzoom203.png");
 
-    var linmin = 203;  
+    var linmin = 20.3;  
 
-    } else if (kurs >= 232 && kurs < 252) {
+    } else if (kurs >= 23.2 && kurs < 25.2) {
     
     $("#messlatte").attr("src", "linealzoom223.png");
 
-    var linmin = 223;
+    var linmin = 22.3;
 
-    } else if (kurs >= 252 && kurs < 272) {
+    } else if (kurs >= 25.2 && kurs < 27.2) {
     
     $("#messlatte").attr("src", "linealzoom243.png");
 
-    var linmin = 243;
+    var linmin = 24.3;
 
-    } else if (kurs >= 272 && kurs < 292) {
+    } else if (kurs >= 27.2 && kurs < 29.2) {
     
     $("#messlatte").attr("src", "linealzoom263.png");
 
-    var linmin = 263;
+    var linmin = 26.3;
 
-    } else if (kurs >= 292) {
+    } else if (kurs >= 29.2) {
     
     $("#messlatte").attr("src", "linealzoom283.png");
 
-    var linmin = 283;
+    var linmin = 28.3;
 
     } else {
   
 }
 
-    var laenge2 = (kurs-linmin)/33*100;
+    var laenge2 = 10 * (kurs-linmin)/33*100;
 
 $( "table.bbc" ).css( "width", laenge1 + "%" );
 $( "table.nuss" ).css( "width", laenge2 + "%" );
